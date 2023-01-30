@@ -19,7 +19,7 @@
 
 // 모듈
 const express = require("express");
-const { allowedNodeEnvironmentFlags } = require("process");
+//const { allowedNodeEnvironmentFlags } = require("process");
 const app = express();
 
 const PORT = 3000;
@@ -28,7 +28,8 @@ const PORT = 3000;
 const home = require("./src/routes/home");
 
 // 앱 셋팅
-app.set("views", "./src/views");
+// 주의) views폴더는 반드시 app.js와 동일 노드선상에 존재해야 한다.(???? 다른폴더는 계속 error)
+app.set("views", "./views");
 app.set("view engine", "ejs");
 
 app.use("/", home); // use -> 미들웨어를 등록해주는 메서드
