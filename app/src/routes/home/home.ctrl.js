@@ -10,9 +10,31 @@ const output = {
     },
 };
 
+const users = {
+    id: ["aaa", "bbb", "ccc"],
+    password:["11", "22", "33"],
+};
+
 const process = {
     login : (req, res)=> {
-        console.log(req.body);   
+        const id = req.body.id;
+        const password = req.body.password;
+        
+        if( users.id.includes(id)) {
+            const idx = users.id.indexOf(id);
+            console.log(`idx = %s, pass = %s`, idx, users.password[idx] );
+
+            if( users.password[idx] == password) {
+                return res.json( {
+                     sucess : true,
+                });
+            }
+        }
+
+        return res.json({
+            sucess: false,
+            msg: "로그인에 실패",
+        });
     },
 };
 
